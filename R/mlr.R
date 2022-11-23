@@ -1,4 +1,32 @@
+#'mlr
+#'
+#'Fits the multiple linear regression model
+#'
+#'@param formula the formula that linear regression model should fit
+#'
+#'@param data the dataframe where the input data comes from
+#'
+#'@param na.action a function which indicates what should happen when the data contain NAs. Default is na.omit.
+#'
+#'@return a list that contains the following values: coefficients, residuals, rank, fitted.values, df.residual, call, terms, model
+#'
+#'@examples
+#'mlr(mpg ~ cyl + wt, mtcars)
+#'mlr(mpg ~ cyl + wt + cyl * wt, mtcars)
+#'mlr(mpg ~ cyl + wt, mtcars, na.action = "na.exclude")
+#'
+#'@importFrom stats model.matrix
+#'
+#'@export
+#'
+
 mlr <- function(formula, data, na.action = "na.omit") {
+  # handle NA
+  if(na.action == "na.omit"){
+    data = na.omit(data)
+  }else if(na.action == "na.exclude"){
+    data = na.exclude(data)
+  }
   # covert the formula to Y and X
   formula_y = all.vars(formula)[1]
   formula_x = labels(terms(formula))
@@ -6,6 +34,7 @@ mlr <- function(formula, data, na.action = "na.omit") {
   covariates = unique(unlist(strsplit(formula_x,":")))
 
   # build a X matrix and a Y matrix
+  library(stats)
   X = model.matrix(formula, data = data)
   Y = as.matrix(data[formula_y])
 
