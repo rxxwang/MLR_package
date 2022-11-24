@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/rxxwang/MLR_package/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rxxwang/MLR_package/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/rxxwang/MLR_package/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rxxwang/MLR_package?branch=main)
 <!-- badges: end -->
 
 The goal of HW3project is to reproduce perfermance of lm().
@@ -19,7 +21,7 @@ You can install the development version of HW3project from
 # install.packages("devtools")
 devtools::install_github("rxxwang/MLR_package")
 #> Downloading GitHub repo rxxwang/MLR_package@HEAD
-#>          checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpIprhfj\remotesb40577c478a\rxxwang-MLR_package-df25a63/DESCRIPTION' ...  ✔  checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpIprhfj\remotesb40577c478a\rxxwang-MLR_package-df25a63/DESCRIPTION' (377ms)
+#>          checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpAnuyES\remotes50b0a9578af\rxxwang-MLR_package-df25a63/DESCRIPTION' ...     checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpAnuyES\remotes50b0a9578af\rxxwang-MLR_package-df25a63/DESCRIPTION' ...   ✔  checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpAnuyES\remotes50b0a9578af\rxxwang-MLR_package-df25a63/DESCRIPTION' (381ms)
 #>       ─  preparing 'HW3project':
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
 #>       ─  checking for LF line-endings in source and make files and shell scripts
@@ -28,7 +30,7 @@ devtools::install_github("rxxwang/MLR_package")
 #>       ─  building 'HW3project_0.1.0.tar.gz'
 #>      
 #> 
-#> Installing package into 'C:/Users/Thinkpad/AppData/Local/Temp/RtmpSSvin8/temp_libpath1f783c3f3152'
+#> Installing package into 'C:/Users/Thinkpad/AppData/Local/Temp/RtmpYHc4cb/temp_libpath4f38681e7501'
 #> (as 'lib' is unspecified)
 ```
 
