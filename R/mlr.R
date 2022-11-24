@@ -37,6 +37,8 @@ mlr <- function(formula, data, na.action = "na.omit") {
   X = model.matrix(formula, data = data)
   Y = as.matrix(data[formula_y])
 
+  #nothi
+
   # use Rcpp for the calculation of parameters
   # sourceCpp("Rcpp.cpp")
   # calculate coefficients
