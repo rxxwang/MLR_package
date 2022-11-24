@@ -1,0 +1,53 @@
+---
+title: "tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+```{r setup}
+library(HW3project)
+library(bench)
+library(stats)
+data("mtcars")
+data("airquality")
+```
+
+# Some examples using mlr function  
+
+Here is an example using the mtcars dataset to fit a model with interactions. The following code shows the output.
+```{r}
+model_mlr1 = mlr(mpg ~ cyl + wt + cyl * wt, mtcars)
+```
+
+Here is an example using the airquality dataset to fit a model using na.exclude. The following code shows the output.
+```{r}
+model_mlr2 = mlr(Ozone ~ Solar.R + Wind + Temp, airquality, na.action = "na.exclude")
+```
+
+# benchmark between mlr function and original lm function
+```{r}
+# using original lm function in stats to build a model same as model_mlr2
+model_lm = lm(Ozone ~ Solar.R + Wind + Temp, airquality, na.action = na.exclude)
+
+# comparing the coefficients between the 2 models and benchmark
+all.equal(model_lm$coefficients, model_mlr2$coefficients)
+bench::mark(model_lm$coefficients, model_mlr2$coefficients)
+
+# comparing the residuals between the 2 models and benchmark
+all.equal(model_lm$residuals, model_mlr2$residuals)
+bench::mark(model_lm$residuals, model_mlr2$residuals)
+
+# comparing the fitted values between the 2 models and benchmark
+all.equal(model_lm$fitted.values, model_mlr2$fitted.values)
+bench::mark(model_lm$fitted.values, model_mlr2$fitted.values)
+
+```
