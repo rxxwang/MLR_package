@@ -19,7 +19,6 @@
 #'
 #'@export
 #'
-
 mlr <- function(formula, data, na.action = "na.omit") {
   # handle NA
   if(na.action == "na.omit"){
