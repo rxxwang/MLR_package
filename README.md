@@ -22,9 +22,11 @@ You can install the development version of HW3project from
 # install.packages("devtools")
 devtools::install_github("rxxwang/MLR_package")
 #> Downloading GitHub repo rxxwang/MLR_package@HEAD
-#> * checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpeEImHo\remotes178042965a6a\rxxwang-MLR_package-f27b841/DESCRIPTION' ... OK
+#> 
+#> * checking for file 'C:\Users\Thinkpad\AppData\Local\Temp\RtmpERaVc3\remotes53d01627c1c\rxxwang-MLR_package-f9befe1/DESCRIPTION' ... OK
 #> * preparing 'HW3project':
 #> * checking DESCRIPTION meta-information ... OK
+#> * cleaning src
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
 #> Omitted 'LazyData' from DESCRIPTION
@@ -33,7 +35,7 @@ devtools::install_github("rxxwang/MLR_package")
 #> Installing package into 'C:/Users/Thinkpad/AppData/Local/R/win-library/4.2'
 #> (as 'lib' is unspecified)
 #> Warning in i.p(...): installation of package 'C:/Users/Thinkpad/AppData/Local/
-#> Temp/RtmpeEImHo/file178010a9244d/HW3project_0.1.0.tar.gz' had non-zero exit
+#> Temp/RtmpERaVc3/file53d0a0e7c72/HW3project_0.1.0.tar.gz' had non-zero exit
 #> status
 ```
 
@@ -44,6 +46,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(HW3project)
 data(mtcars)
+# Use the mlr function to generate a multilinear regression model
 model_mlr = mlr(mpg ~ cyl + wt + cyl * wt, mtcars)
 #> 
 #>  Call: 
@@ -52,10 +55,11 @@ model_mlr = mlr(mpg ~ cyl + wt + cyl * wt, mtcars)
 #>  Coefficients: 
 #> (Intercept)         cyl          wt      cyl:wt 
 #>  54.3068062  -3.8032187  -8.6555590   0.8083947
+# Use the summary_mlr function to show the summary result of the model
 summary = summary_mlr(model_mlr)
 #> 
 #>  Call: 
-#>  lm( formula =  mpg ~ cyl + wt + cyl * wt ) 
+#>  lm( formula = mpg ~ cyl + wt + cyl * wt ) 
 #>  
 #>  Redisuals: 
 #>        Min         1Q     Median         3Q        Max 
@@ -69,7 +73,7 @@ summary = summary_mlr(model_mlr)
 #> cyl:wt       0.8083947 0.327322    2.469723 1.988242e-02 *  
 #> --- 
 #>  Signif. codes: 
-#>  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+#>  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 #>  
 #>  Residual standard error:  2.368 on 28 degrees of freedom 
 #>  Multiple R-squared:  0.8606 ,   Adjusted R-squared:  0.8457 

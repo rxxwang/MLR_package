@@ -38,7 +38,9 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(HW3project)
 data(mtcars)
+# Use the mlr function to generate a multilinear regression model
 model_mlr = mlr(mpg ~ cyl + wt + cyl * wt, mtcars)
+# Use the summary_mlr function to show the summary result of the model
 summary = summary_mlr(model_mlr)
 ```
 
