@@ -33,6 +33,17 @@ Here is an example using the airquality dataset to fit a model using na.exclude.
 model_mlr2 = mlr(Ozone ~ Solar.R + Wind + Temp, airquality, na.action = "na.exclude")
 ```
 
+# Some examples using summary_mlr function  
+
+Here is an example of the summary of the first model
+```{r}
+sum_mlr1 = summary_mlr(model_mlr1)
+```
+Here is an example of the summary of the second model
+```{r}
+sum_mlr2 = summary_mlr(model_mlr2)
+```
+
 # benchmark between mlr function and original lm function
 ```{r}
 # using original lm function in stats to build a model same as model_mlr2
@@ -50,4 +61,34 @@ bench::mark(model_lm$residuals, model_mlr2$residuals)
 all.equal(model_lm$fitted.values, model_mlr2$fitted.values)
 bench::mark(model_lm$fitted.values, model_mlr2$fitted.values)
 
+```
+
+# benchmark between summary_mlr function and original summary function
+```{r}
+# using original summary function to get the summary of model_lm
+sum_lm = summary(model_lm)
+
+# comparing the coefficients between the 2 models and benchmark
+all.equal(sum_lm$coefficients, sum_mlr2$coefficients)
+bench::mark(model_lm$coefficients, model_mlr2$coefficients)
+
+# comparing the sigma between the 2 models and benchmark
+all.equal(sum_lm$sigma, sum_mlr2$sigma)
+bench::mark(sum_lm$sigma, sum_mlr2$sigma)
+
+# comparing the degree of freedom between the 2 models and benchmark
+all.equal(sum_lm$df, sum_mlr2$df)
+bench::mark(sum_lm$df, sum_mlr2$df)
+
+# comparing the r.squared between the 2 models and benchmark
+all.equal(sum_lm$r.squared, sum_mlr2$r.squared)
+bench::mark(sum_lm$r.squared, sum_mlr2$r.squared)
+
+# comparing the adjusted r.squared between the 2 models and benchmark
+all.equal(sum_lm$adj.r.squared, sum_mlr2$adj.r.squared)
+bench::mark(sum_lm$adj.r.squared, sum_mlr2$adj.r.squared)
+
+# comparing the F value and its degree of freedom between the 2 models and benchmark
+all.equal(sum_lm$fstatistic, sum_mlr2$fstatistic)
+bench::mark(sum_lm$fstatistic, sum_mlr2$fstatistic)
 ```

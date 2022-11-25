@@ -36,8 +36,6 @@ mlr <- function(formula, data, na.action = "na.omit") {
   X = stats::model.matrix(formula, data = data)
   Y = as.matrix(data[formula_y])
 
-  # use Rcpp for the calculation of parameters
-  # sourceCpp("Rcpp.cpp")
   # calculate coefficients
   beta = solve(t(X) %*% X) %*% t(X) %*% Y
 
@@ -47,18 +45,33 @@ mlr <- function(formula, data, na.action = "na.omit") {
   # calculate fitted values
   fit_values = X %*% beta
 
+  # calculate estimated sigma squares
+  sigma_2 = sum(res*res)/(dim(data)[1] - length(formula_x) - 1)
+
+  # calculate the variances of coefficients
+  variance_matrix = sigma_2 * solve(t(X) %*% X)
+
+  # calculate SSY
+  SSY = 0
+  for(i in 1:length(Y)){
+    SSY = SSY + (Y[i]-mean(Y))^2
+  }
+
+  # get the output list
   output_list = list(
     "coefficients" = stats::setNames(as.vector(beta),rownames(beta)),
     "residuals" = stats::setNames(as.vector(res),rownames(res)),
     "rank" = length(formula_x)+1,
     "fitted.values" = stats::setNames(as.vector(fit_values),rownames(fit_values)),
     "df.residual" = dim(data)[1] - length(formula_x) - 1,
+    "coefficients.matrix" = variance_matrix,
+    "SSY" = SSY,
     "call" = paste0("lm(formula = ", Reduce(paste, deparse(formula)), ")"),
     "terms" = formula,
     "model" = data[c(formula_y,covariates)]
   )
 
-  colnames(beta) = NULL
+  # print results
   cat(
     "\n",
     "Call:","\n",

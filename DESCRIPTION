@@ -4,7 +4,7 @@ Title: MLR
 Version: 0.1.0
 Author: Ruixuan Wang
 Maintainer: Ruixuan Wang <rxxwang@umich.edu>
-Description: There are 3 functions in this package: mlr function is for building a model (similar to lm function); summary_mlr function gives a summary of the model(similar to summary function); anova_mlr gives the anova result of MLR(similar to anoca function)
+Description: There are 2 functions in this package: mlr function is for building a model (similar to lm function); summary_mlr function gives a summary of the model(similar to summary function).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -17,3 +17,7 @@ Suggests:
     covr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
