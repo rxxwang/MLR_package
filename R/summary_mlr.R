@@ -69,7 +69,7 @@ summary_mlr <- function(model){
   cat(
     "\n",
     "Call:","\n",
-    "lm( formula = ", Reduce(paste, deparse(formula)), ")","\n",
+    "lm( formula =", Reduce(paste, deparse(formula)), ")","\n",
     "\n",
     "Redisuals:","\n")
   print(quartile_residuals)
@@ -81,7 +81,7 @@ summary_mlr <- function(model){
   cat(
     "---","\n",
     "Signif. codes:","\n",
-    "0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1","\n",
+    "0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1","\n",
     "\n",
     "Residual standard error: ",round(sqrt(SSE/model$df.residual),3),
     "on",model$df.residual,"degrees of freedom","\n",
